@@ -74,5 +74,4 @@ public class AccountRestControllerTest {
                     new URL("http://localhost:" + port + "/createaccount?customerid=323000initialcredit=10").toString(), request, String.class);
         });
     }
-
 }
