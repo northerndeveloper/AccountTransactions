@@ -119,6 +119,6 @@ Please click following link to see CI / CD pipelines :
 
 https://github.com/northerndeveloper/AccountTransactions/actions
 
-
+Configurations can be adjusted from the file : maven.yml inside the project under ./git-hub/workflows/maven.yml
 
 
