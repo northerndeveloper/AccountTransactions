@@ -35,7 +35,7 @@ public class AccountService {
     }
 
     /**
-     * Creates Account by customer ID and Initial Credit
+     * Creates Account by Customer ID and Initial Credit
      *
      * @param customerID
      * @param initialCredit
@@ -44,10 +44,11 @@ public class AccountService {
     public Account createAccount(Long customerID, BigDecimal initialCredit) throws AccountServiceException {
 
         logger.debug("Create account servie is called with the provided Customer Id = " + customerID + " and initialCredit "
-        + initialCredit);
+                + initialCredit);
 
         Optional<Customer> customer = customerRepository.findById(customerID);
         if (customer.isEmpty()) {
+            logger.error(customerID + " does not reside at DB .Change the customerID");
             throw new AccountServiceException("Customer ID provided does not reside at DB. Please check customerID" +
                     "again");
         }
@@ -56,16 +57,14 @@ public class AccountService {
 
         Account account = new Account();
         account.setCustomer(customer.get());
-        account.setBalance(initialCredit); //TODO initialize transaction there
+        account.setBalance(initialCredit);
         logger.debug("Balance for Transaction is " + initialCredit);
-        //TODO what happens if the user sends a negative amount
 
-        if(initialCredit != null) {
+        if (initialCredit != null) {
             List<Transaction> transactionList = createTransactionList(initialCredit, account);
             account.setTransactionList(transactionList);
         }
         return accountRepository.save(account);
-
     }
 
     /**
@@ -78,7 +77,7 @@ public class AccountService {
     public List<Transaction> createTransactionList(BigDecimal initialCredit, Account account) {
 
         logger.debug("Transaction List creation has been initialized with the initalCredit " + initialCredit +
-               " with the account ID " + account.getAccountId() );
+                " with the account ID " + account.getAccountId());
         List<Transaction> transactionList = new ArrayList<>();
         if (initialCredit.compareTo(BigDecimal.ZERO) != 0) {
             Transaction transaction = new Transaction();
@@ -106,5 +105,4 @@ public class AccountService {
         logger.debug("Total Balance of an account is " + totalBalance);
         return totalBalance;
     }
-
 }

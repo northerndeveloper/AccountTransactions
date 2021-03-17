@@ -9,10 +9,10 @@ import org.apache.logging.log4j.Logger;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import java.math.BigDecimal;
 
@@ -52,14 +52,11 @@ public class AccountRestController {
      */
     @PostMapping("/createaccount")
     public ResponseEntity<Account> createAccount(@RequestParam(value = "customerid") Long customerID,
-                                                 @RequestParam(value = "initialcredit") BigDecimal initialCredit) throws AccountRestControllerException, AccountServiceException {
-        //TODO manage redirectattributes
-        //TODO initialcredit verilmese de olur bunu lütfen kontrol et
+                                                 @RequestParam(value = "initialcredit", defaultValue = "0", required = false)
+                                                         BigDecimal initialCredit) throws AccountRestControllerException, AccountServiceException {
 
         logger.info("Create Account is created. Customer ID is " + customerID + " Initial Credit is " + initialCredit);
         if (initialCredit.compareTo(BigDecimal.ZERO) < 0) {
-            //  redirectAttributes.addFlashAttribute("alertClass", "alert-danger"); TODO yaratıldı veya yaratılamadı
-            // uyarılarını vermen lazım
             logger.error("Initial Credit should not be smaller than 0");
             throw new AccountRestControllerException("Initial Credit should not be smaller than 0");
         }
@@ -80,30 +77,28 @@ public class AccountRestController {
      *
      * @param customerID
      * @param initialCredit
-     * @param redirectAttributes
      * @return
      * @throws AccountRestControllerException
      * @throws AccountServiceException
      */
     @PostMapping("/account")
     public String createAccount(@RequestParam(value = "customerid") Long customerID,
-                                @RequestParam(value = "initialcredit", defaultValue =  "0", required = false) BigDecimal initialCredit,
-                                RedirectAttributes redirectAttributes) throws AccountRestControllerException, AccountServiceException {
-        //TODO manage redirectattributes
+                                @RequestParam(value = "initialcredit", defaultValue = "0", required = false) BigDecimal initialCredit,
+                                Model model) throws AccountRestControllerException, AccountServiceException {
 
         logger.info("Create Account is created. Customer ID is " + customerID + " Initial Credit is " + initialCredit);
-        if ( 0 < BigDecimal.ZERO.compareTo(initialCredit) ) {
+        if (0 < BigDecimal.ZERO.compareTo(initialCredit)) {
             logger.error("Initial Credit should not be smaller than 0");
-            redirectAttributes.addFlashAttribute("error", "Everything did went just fine.");  //TODO
+            model.addAttribute("success", false);
             throw new AccountRestControllerException("Initial Credit should not be smaller than 0");
         }
 
-        //TODO lütfen loglamaları ekle ve hata oluştuğunda exception case fırlatılmasını da buradan yap
-        redirectAttributes.addFlashAttribute("success", "Everything went just fine.");
+        model.addAttribute("success", true);
 
         Account account = accountService.createAccount(customerID, initialCredit);
         if (account == null) {
             logger.error("Unable to create account. Please try again later");
+            model.addAttribute("success", false);
             throw new AccountRestControllerException("Unable to create account. Please try again later");
         }
 

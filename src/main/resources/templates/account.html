@@ -1,7 +1,11 @@
 <form action="#" th:action="@{account}" method="post" xmlns:th="http://www.w3.org/1999/xhtml">
 
-    <div class="alert alert-primary" role="alert" th:text="${success}" th:if="${success}"></div>
-    <div class="alert alert-danger" role="alert" th:text="${error}" th:if="${error}"></div>
+    <div class="alert alert-success" role="alert" th:if="${success}">
+        Account is created succesfully.
+    </div>
+    <div class="alert alert-danger" role="alert" th:text="${error}" th:if="${error}">
+        Problem happened while creating an account.
+    </div>
     <table border="1">
         <tr>
             <td><label th:text="'Customer ID'"/></td>

@@ -3,12 +3,10 @@ package com.blueharvest.accounttransactions.rest.controller;
 
 import com.blueharvest.accounttransactions.entity.Transaction;
 import com.blueharvest.accounttransactions.exception.TransactionServiceException;
-import com.blueharvest.accounttransactions.service.CustomerService;
 import com.blueharvest.accounttransactions.service.TransactionService;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.springframework.http.HttpStatus;
-import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -40,7 +38,7 @@ public class TransactionRestController {
 
         List<Transaction> transactionList = transactionService.findAllTransactionsOfACustomer(customerID);
 
-        if( transactionList.isEmpty() ) {
+        if (transactionList.isEmpty()) {
             logger.info("Transaction List for the provided customer ID is empty");
         }
         return new ResponseEntity<>(transactionList, HttpStatus.OK);
