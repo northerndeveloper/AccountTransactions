@@ -99,7 +99,7 @@ public class AccountService {
 
         BigDecimal totalBalance = BigDecimal.ZERO;
 
-        for (Account account : accountList) { //TODO burada lütfen java8 kullan
+        for (Account account : accountList) {
             totalBalance = totalBalance.add(account.getBalance());
         }
         logger.debug("Total Balance of an account is " + totalBalance);

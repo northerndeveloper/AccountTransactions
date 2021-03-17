@@ -65,10 +65,10 @@ public class CustomerRestController {
      * @return
      * @throws CustomerServiceException
      */
-    @PostMapping(value = "/customer") //TODO bu post mapping değildir bu get mappingdir.
-    public String getCustomer(@RequestParam("customerid") Long customerID, Model model) throws CustomerServiceException {
+    @PostMapping(value = "/customer")
+    public String getCustomerPageByID(@RequestParam("customerid") Long customerID, Model model) throws CustomerServiceException {
 
-        Customer customer = customerService.findCustomerByID(customerID);//TODO null case
+        Customer customer = customerService.findCustomerByID(customerID);
         model.addAttribute("customer", customer);
         model.addAttribute("totalBalance", accountService.getTotalBalanceOfCustomer(customer.getAccountList()));
         logger.info(customer.getCustomerID() + " ID of customer has been called");

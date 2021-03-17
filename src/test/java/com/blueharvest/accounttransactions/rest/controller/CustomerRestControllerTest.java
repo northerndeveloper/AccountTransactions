@@ -42,19 +42,4 @@ public class CustomerRestControllerTest {
         assertEquals(response.getStatusCode(), HttpStatus.OK);
         assertEquals(response.getStatusCodeValue(), 200);
     }
-
-   /* @Test  TODO
-    public void testGetCustomerByIDFails() {
-
-        Throwable exception = assertThrows(CustomerServiceException.class, () -> {
-            ResponseEntity<String> response = restTemplate.getForEntity(
-                    new URL("http://localhost:" + port + "/showcustomer?customerid=12345").toString(), String.class);
-        });
-
-
-
-    }
-*/
-
-
 }

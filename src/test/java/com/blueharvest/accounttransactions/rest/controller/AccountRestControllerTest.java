@@ -67,11 +67,10 @@ public class AccountRestControllerTest {
 
         RestTemplate restTemplate = new RestTemplate();
 
-        HttpEntity<String> request = new HttpEntity<String>("");
 
         Assertions.assertThrows(HttpClientErrorException.class, () -> {
-            ResponseEntity<String> response = restTemplate.postForEntity(
-                    new URL("http://localhost:" + port + "/createaccount?customerid=323000initialcredit=10").toString(), request, String.class);
+            ResponseEntity<String> response = restTemplate.getForEntity(
+                    new URL("http://localhost:" + port + "/createaccount?customerid=323000initialcredit=10").toString(), String.class);
         });
     }
 }

@@ -26,7 +26,7 @@ public class TransactionRestControllerTest {
     private TestRestTemplate restTemplate;
 
     @Test
-    public void testGetTransactionsOfACustomer() {   //TODO this method is not required anymore
+    public void testGetTransactionsOfACustomer() {
         ResponseEntity<List<Transaction>> response = restTemplate.exchange(
                 "http://localhost:" + port + "/transactionsofcustomer?customerid=323132",
                 HttpMethod.GET,
@@ -36,8 +36,6 @@ public class TransactionRestControllerTest {
 
         assertEquals(response.getStatusCode(), HttpStatus.OK);
         assertEquals(response.getStatusCodeValue(), 200);
-        assertEquals(response.getBody().size(), 5);  //TODO öteki methodları daa bunlara uygkun olarak değitir
+        assertEquals(response.getBody().size(), 5);
     }
-
-
 }

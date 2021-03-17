@@ -44,7 +44,4 @@ public class TransactionServiceTest {
         assertEquals(transactionService.getAllTransactions().size(), transactionList.size());
         assertEquals(transactionService.getAllTransactions().get(0).getTransactionId(), Long.valueOf("1212"));
     }
-
-    //TODO add more tests for TransactionService
-
 }
