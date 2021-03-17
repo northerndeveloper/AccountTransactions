@@ -1,0 +1,61 @@
+<form action="#" th:action="@{customer}" method="post" xmlns:th="http://www.w3.org/1999/xhtml"
+      xmlns="http://www.w3.org/1999/html">
+    <table border="3">
+        <tr>
+            <td><label th:text="'Customer ID'"/></td>
+            <td><input type="number" th:name="customerid"/></td>
+        </tr>
+        <tr>
+            <td><input type="submit" value="Submit"/></td>
+        </tr>
+    </table>
+</form>
+
+
+<table border="4" xmlns:th="http://www.w3.org/1999/xhtml" th:if="${customer != null}">
+
+    <thead>
+        <tr>
+            <th> Customer Name</th>
+            <th> Customer Surname</th>
+            <th> Total Balance</th>
+        </tr>
+    </thead>
+
+    <tbody>
+        <tr>
+            <td><span th:text="${customer.customerName}"> Customer Name </span></td>
+            <td><span th:text="${customer.customerSurname}"> Customer Surname </span></td>
+            <td><span th:text="${totalBalance}"> Total Balance </span></td>
+        </tr>
+    </tbody>
+
+    <thead>
+        <tr>
+            <th> Account ID</th>
+            <th> Account Balance</th>
+        </tr>
+    </thead>
+    <tbody>
+
+
+    <span th:each="account : ${customer.accountList}">
+        <td th:text="${account.accountId}" />
+        <td th:text="${account.balance}" />
+
+
+    <tr>
+        <th> Transaction ID </th>
+        <th> Transaction Amount </th>
+
+    </tr>
+        <tr th:each="transaction: ${account.transactionList}">
+             <td th:text="${transaction.transactionId}"></td>
+             <td th:text="${transaction.transactionAmount}"></td>
+        </tr>
+    </span>
+
+    </tbody>
+
+
+</table>
