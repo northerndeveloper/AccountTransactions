@@ -110,5 +110,15 @@ Sample Customer IDS : 323132,323133,323134
 You will see Customer Name, Customer Surname, Total Balance and related
 Account and Transaction information
 
+## CI - CD Integration
+
+A CI/CD pipeline was created with GitHub Actions.
+Pipeline helped in automating software delivery process.
+
+Please click following link to see CI / CD pipelines :
+
+https://github.com/northerndeveloper/AccountTransactions/actions
+
+
 
 
