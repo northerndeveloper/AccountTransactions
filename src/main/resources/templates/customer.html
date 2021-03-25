@@ -30,7 +30,7 @@
         </tr>
     </tbody>
 
-    <thead>
+    <thead style='border:10px solid red; border-width:thick'>
         <tr>
             <th> Account ID</th>
             <th> Account Balance</th>
@@ -38,10 +38,9 @@
     </thead>
     <tbody>
 
-
     <span th:each="account : ${customer.accountList}">
-        <td th:text="${account.accountId}" />
-        <td th:text="${account.balance}" />
+        <td th:text="${account.accountId}" style='border:10px solid red; border-width:thick'/>
+        <td th:text="${account.balance}" style='border:10px solid red; border-width:thick'/>
 
 
     <tr>
