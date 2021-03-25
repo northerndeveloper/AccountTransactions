@@ -1,7 +1,7 @@
 package com.blueharvest.accounttransactions.exception;
 
 /**
- * Exception class created for AccountRestControllerException
+ * Exception class created for AccountRestController
  */
 public class AccountRestControllerException extends Exception {
 

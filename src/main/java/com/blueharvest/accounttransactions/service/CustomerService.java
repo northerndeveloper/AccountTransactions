@@ -31,6 +31,6 @@ public class CustomerService {
             logger.error("Customer could not be find with the customerID " + customerID);
             throw new CustomerServiceException("Customer could not be find with the customerID " + customerID);
         }
-        return customerRepository.findById(customerID).get();
+        return customer.get();
     }
 }
