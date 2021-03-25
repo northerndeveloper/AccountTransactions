@@ -67,7 +67,7 @@ public class AccountRestController {
             throw new AccountRestControllerException("Unable to create account. Please try again later");
         }
 
-        logger.info("Account is created successfully. Created acount ID is " + account.getAccountId());
+        logger.info("Account is created successfully. Created account ID is " + account.getAccountId());
         return new ResponseEntity<>(account, HttpStatus.CREATED);
     }
 

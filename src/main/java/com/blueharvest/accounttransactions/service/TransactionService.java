@@ -45,20 +45,19 @@ public class TransactionService {
                     "another customerID ");
         }
 
-        List<Transaction> transactionList = collectTransactionsFromAccountOfCustomer(customer);
+        List<Transaction> transactionList = collectTransactionsFromAccountOfCustomer(customer.getAccountList());
         logger.debug("All transactions are found with the provided customerID");
         return transactionList;
     }
 
     /**
      * This method is used to collect all transactions from accounts of customer
-     * @param customer
+     * @param accountList
      * @return
      */
-    private List<Transaction> collectTransactionsFromAccountOfCustomer(Customer customer) {
+    private List<Transaction> collectTransactionsFromAccountOfCustomer(List<Account> accountList) {
 
         logger.debug("Collecting transactions from account of customer is initialized ");
-        List<Account> accountList = customer.getAccountList();
         List<Transaction> transactionList = new ArrayList<>();
         for (Account account : accountList) {
             transactionList.addAll(account.getTransactionList());

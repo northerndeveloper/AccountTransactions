@@ -76,7 +76,7 @@ public class AccountService {
      */
     public List<Transaction> createTransactionList(BigDecimal initialCredit, Account account) {
 
-        logger.debug("Transaction List creation has been initialized with the initalCredit " + initialCredit +
+        logger.debug("Transaction List creation has been initialized with the initialCredit " + initialCredit +
                 " with the account ID " + account.getAccountId());
         List<Transaction> transactionList = new ArrayList<>();
         if (initialCredit.compareTo(BigDecimal.ZERO) != 0) {

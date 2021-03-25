@@ -9,7 +9,7 @@ import java.math.BigDecimal;
 import java.util.List;
 
 /**
- * Account Entity which keeps all the requied information of an Account of a user
+ * Account Entity which keeps all the required information of an Account of a user
  */
 @Entity
 @Getter
